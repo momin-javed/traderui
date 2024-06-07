@@ -113,6 +113,8 @@ func nos42(ord oms.Order) (quickfix.Messagable, error) {
 		field.NewOrdType(ord.OrdType),
 	)
 	nos.Set(field.NewOrderQty(ord.QuantityDecimal, 0))
+	nos.Set(field.NewAccount(ord.Account))
+	nos.Set(field.NewTimeInForce(ord.Tif))
 
 	return populateOrder(nos, ord)
 }
@@ -125,6 +127,7 @@ func cxl42(ord oms.Order, clOrdID string) (quickfix.Messagable, error) {
 		field.NewSide(ord.Side),
 		field.NewTransactTime(time.Now()),
 	)
+	cxl.Set(field.NewAccount(ord.Account))
 
 	return cxl, nil
 }
