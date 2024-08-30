@@ -115,6 +115,9 @@ func nos42(ord oms.Order) (quickfix.Messagable, error) {
 	nos.Set(field.NewOrderQty(ord.QuantityDecimal, 0))
 	nos.Set(field.NewAccount(ord.Account))
 	nos.Set(field.NewTimeInForce(ord.Tif))
+	if len(ord.OpenClose) > 0 {
+		nos.Set(field.NewOpenClose(ord.OpenClose))
+	}
 
 	return populateOrder(nos, ord)
 }

@@ -37,6 +37,7 @@ type Order struct {
 	StrikePrice        string             `json:"strike_price"`
 	StrikePriceDecimal decimal.Decimal    `json:"-"`
 	Tif                enum.TimeInForce   `json:"tif"`
+	OpenClose          enum.OpenClose     `json:"open_close"`
 }
 
 // Init initialized computed fields on order from user input
